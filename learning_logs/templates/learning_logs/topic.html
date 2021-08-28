@@ -6,6 +6,9 @@
 
 {% block content %}
   <p>
+    <a href="{% url 'learning_logs:edit_topic' topic.id %}">Edit topic</a>
+  </p>
+  <p>
     <a href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a>
   </p>
 
@@ -22,6 +25,27 @@
     </div>
   {% empty %}
     <p>There are no entries for this topic yet.</p>
+  {% endfor %}
+
+  <h4>Comments</h4>
+  {% for comment in comments %}
+    <div class="card mb-3">
+      <h4 class="card-header">
+        {{ comment.date_added|date:'M d, Y H:i' }}
+        <small><a href="{% url 'learning_logs:edit_entry' entry.id %}">
+          edit comment</a></small>
+      </h4>
+      <h4 class="card-header">
+        {{ comment.date_added|date:'M d, Y H:i' }}
+        <small><a href="{% url 'learning_logs:edit_entry' entry.id %}">
+          delete comment</a></small>
+      </h4>
+      <div class="card-body">
+        {{ comment.text|linebreaks }}
+      </div>
+    </div>
+  {% empty %}
+    <p>There are no comments for this topic yet.</p>
   {% endfor %}
 
 {% endblock content %}
