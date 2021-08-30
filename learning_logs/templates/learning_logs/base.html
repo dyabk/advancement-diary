@@ -1,4 +1,5 @@
 {% load bootstrap4 %}
+{% load static %}
 
 <!doctype html>
 <html lang="en">
@@ -6,13 +7,51 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1,
     shrink-to-fit=no">
+  <style>
+
+    .foot {
+      position: relative;
+      color: #fff;
+      margin-top: 40px;
+      padding: 20px 20px;
+      left: 0;
+      bottom: 0;
+      text-align: center;
+    }
+
+    #footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      /*background-color: #f9f9f9;*/
+      /*min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 12px 16px;
+      z-index: 1;*/
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+  </style>
   <title>Advancement Diary</title>
 
   {% bootstrap_css %}
   {% bootstrap_javascript jquery='full' %}
 
 </head>
-<body>
+<body style="background-image: url('{% static "learning_logs/images/my_background.jpg" %}');">
 
   <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
 
@@ -31,7 +70,6 @@
             Topics</a></li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        </li>
         {% if user.is_authenticated %}
           <li class="nav-item">
             <span class="navbar-text">Hello, {{ user.username }}.</span>
@@ -48,22 +86,16 @@
           </li>
         {% endif %}
         <li class="nav-item">
-          <span class="navbar-text">Choose Language</span>
-        </li>
-        <li class="nav-item">
-          <span class="navbar-text">English</span>
-        </li>
-        <li class="nav-item">
-          <span class="navbar-text">Español</span>
-        </li>
-        <li class="nav-item">
-          <span class="navbar-text">Беларуская</span>
-        </li>
-        <li class="nav-item">
-          <span class="navbar-text">Русский</span>
-        </li>
-        <li class="nav-item">
-          <span class="navbar-text">Українська</span>
+          <div class="navbar-text" class="dropdown">
+            <span>Choose Language</span>
+            <div class="dropdown-content">
+              <a class="nav-link" href="#">English</a>
+              <a class="nav-link" href="#">Español</a>
+              <a class="nav-link" href="#">Беларуская</a>
+              <a class="nav-link" href="#">Русский</a>
+              <a class="nav-link" href="#">Українська</a>
+            </div>
+          </div>
         </li>
       </ul>
     </div>
@@ -77,6 +109,15 @@
       {% block content %}{% endblock content %}
     </div>
   </main>
+
+  <!-- Footer -->
+  <div class="foot">
+    <div class="container">
+      <footer>
+        <p>2021 - Mental Advancement Team, Florida, United States.</p>
+      </footer>
+    </div>
+  </div>
 
 </body>
 

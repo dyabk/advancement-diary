@@ -37,17 +37,17 @@ class Comment(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = 'comments'
+        ordering = ['date_added']
 
     def __str__(self):
         """Return a string representation of the model."""
-
-        string_representation = f"{self.text[:50]}"
         
+        comment = f"{self.text[:50]}"
         if(len(self.text) > 50):
-            string_representation += "..."
-        
-        return f"{string_representation}"
+            comment += "..."
+     
+        return f'Comment "{comment}" by {self.author}'

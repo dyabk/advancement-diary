@@ -6,7 +6,7 @@ class TopicForm(forms.ModelForm):
     class Meta:
         model = Topic
         fields = ['name', 'public']
-        labels = {'name': '', 'public': 'Create a public topic.'}
+        labels = {'name': '', 'public': 'Make public.'}
 
 class EntryForm(forms.ModelForm):
     class Meta:
