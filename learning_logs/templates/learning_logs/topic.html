@@ -1,5 +1,6 @@
 {% extends 'learning_logs/base.html' %}
 {% load bootstrap4 %}
+{% load static %}
 
 {% block page_header %}
   <h1>{{ topic }}</h1>
@@ -8,10 +9,8 @@
 {% block content %}
   {% if request.user == topic.owner %}
     <p>
-      <a href="{% url 'learning_logs:edit_topic' topic.id %}">Edit topic</a>
-    </p>
-    <p>
-      <a href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a>
+      <a href="{% url 'learning_logs:edit_topic' topic.id %}">edit topic</a>
+      <a href="{% url 'learning_logs:new_entry' topic.id %}">add new entry</a>
     </p>
   {% endif %}
   
@@ -29,7 +28,7 @@
             edit entry</a></small>
         {% endif %}
       </h4>
-      <div class="card-body">
+      <div class="card-body" style="background-image: url('{% static "learning_logs/images/my_background.jpg" %}');">
         {{ entry.text|linebreaks }}
       </div>
     </div>
